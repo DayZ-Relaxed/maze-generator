@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MazeGenerator
@@ -15,6 +9,8 @@ namespace MazeGenerator
     {
 
         private PrimMaze _maze;
+        private string _objectName;
+        private int _selectedObject = -1;
 
         public Form1()
         {
@@ -24,24 +20,34 @@ namespace MazeGenerator
 
         private void generateMaze_Click(object sender, EventArgs e)
         {
-
-            int width = Decimal.ToInt32(widthValue.Value);
-            int height = Decimal.ToInt32(heightValue.Value);
-
-            _maze = new PrimMaze(width, height, 
-                Decimal.ToInt32(startingX.Value), 
-                Decimal.ToInt32(startingY.Value), 
-                Decimal.ToInt32(wallValue.Value), 
-                Decimal.ToInt32(passageValue.Value)
+            _maze = new PrimMaze(
+                decimal.ToInt32(widthValue.Value),
+                decimal.ToInt32(heightValue.Value),
+                decimal.ToInt32(startingX.Value),
+                decimal.ToInt32(startingY.Value),
+                decimal.ToInt32(wallValue.Value),
+                decimal.ToInt32(passageValue.Value),
+                decimal.ToInt32(xChange.Value),
+                decimal.ToInt32(yChange.Value),
+                new List<string>()
             );
             _maze.Solve();
 
             mazeTextbox.Text = _maze.ToString();
-            exportMaze.Enabled = true;
+
+            this.checkPreGeneration();
         }
 
         private void exportMaze_Click(object sender, EventArgs e)
         {
+            List<string> objectNames = new List<string>();
+
+            foreach (string objectName in objectsToSelectFrom.Items)
+            {
+                objectNames.Add(objectName);
+            }
+            _maze.objectNames = objectNames;
+
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
                 dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -56,6 +62,40 @@ namespace MazeGenerator
                     file.Close();
                 }
             }
+        }
+
+        private void objectsToSelectFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedObject = objectsToSelectFrom.SelectedIndex;
+        }
+
+        private void addToObjectList_Click(object sender, EventArgs e)
+        {
+            if (_objectName == null) return;
+            objectsToSelectFrom.Items.Add(_objectName);
+            textToAddToObjectList.Text = "";
+            _objectName = null;
+
+            this.checkPreGeneration();
+        }
+
+        private void textToAddToObjectList_TextChanged(object sender, EventArgs e)
+        {
+            _objectName = textToAddToObjectList.Text;
+        }
+
+        private void removeFromObjectList_Click(object sender, EventArgs e)
+        {
+            if (_selectedObject == -1) return;
+            objectsToSelectFrom.Items.RemoveAt(_selectedObject);
+
+            this.checkPreGeneration();
+        }
+
+        private void checkPreGeneration()
+        {
+            if (objectsToSelectFrom.Items.Count == 0) exportMaze.Enabled = false;
+            else exportMaze.Enabled = true;
         }
     }
 }

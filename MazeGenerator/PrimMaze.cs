@@ -18,12 +18,25 @@ namespace MazeGenerator
         int startingY;
         int wallSize;
         int passageSize;
+        int xChangeGeneration;
+        int yChangeGeneration;
+        public List<string> objectNames;
 
         int height;
         int width;
         bool[,] map;
 
-        public PrimMaze(int width, int height, int startingX, int startingY, int wallSize, int passageSize)
+        public PrimMaze(
+            int width,
+            int height,
+            int startingX,
+            int startingY,
+            int wallSize,
+            int passageSize,
+            int xChangeGeneration,
+            int yChangeGeneration,
+            List<string> objectNames
+            )
         {
             this.height = height;
             this.width = width;
@@ -32,56 +45,57 @@ namespace MazeGenerator
             this.startingY = startingY;
             this.wallSize = wallSize;
             this.passageSize = passageSize;
+            this.xChangeGeneration = xChangeGeneration;
+            this.yChangeGeneration = yChangeGeneration;
+            this.objectNames = objectNames;
         }
 
         public void Solve()
         {
-            this.map = new bool[width, height];
-            List<int[]> frontiers = new List<int[]>();
-            Random random = new Random();
-
-            int x = random.Next(0, width);
-            int y = random.Next(0, height);
-            frontiers.Add(new int[] { x, y, x, y });
-
-            while (frontiers.Count != 0)
+            while (!Validate())
             {
-                int removedAt = random.Next(frontiers.Count());
-                int[] frontier = frontiers[removedAt];
-                frontiers.RemoveAt(removedAt);
+                this.map = new bool[width, height];
+                List<int[]> frontiers = new List<int[]>();
+                Random random = new Random();
 
-                x = frontier[2];
-                y = frontier[3];
+                int x = random.Next(0, width);
+                int y = random.Next(0, height);
+                frontiers.Add(new int[] { x, y, x, y });
 
-                if (map[x, y] == WALL)
+                while (frontiers.Count != 0)
                 {
-                    map[frontier[0], frontier[1]] = map[x, y] = PASSAGE;
+                    int removedAt = random.Next(frontiers.Count());
+                    int[] frontier = frontiers[removedAt];
+                    frontiers.RemoveAt(removedAt);
 
-                    if (x >= 2 && map[x - 2, y] == WALL)
-                    {
-                        frontiers.Add(new int[] { x - 1, y, x - 2, y });
-                    }
+                    x = frontier[2];
+                    y = frontier[3];
 
-                    if (y >= 2 && map[x, y - 2] == WALL)
+                    if (map[x, y] == WALL)
                     {
-                        frontiers.Add(new int[] { x, y - 1, x, y - 2 });
-                    }
+                        map[frontier[0], frontier[1]] = map[x, y] = PASSAGE;
 
-                    if (x < width - 2 && map[x + 2, y] == WALL)
-                    {
-                        frontiers.Add(new int[] { x + 1, y, x + 2, y });
-                    }
+                        if (x >= 2 && map[x - 2, y] == WALL)
+                        {
+                            frontiers.Add(new int[] { x - 1, y, x - 2, y });
+                        }
 
-                    if (y < height - 2 && map[x, y + 2] == WALL)
-                    {
-                        frontiers.Add(new int[] { x, y + 1, x, y + 2 });
+                        if (y >= 2 && map[x, y - 2] == WALL)
+                        {
+                            frontiers.Add(new int[] { x, y - 1, x, y - 2 });
+                        }
+
+                        if (x < width - 2 && map[x + 2, y] == WALL)
+                        {
+                            frontiers.Add(new int[] { x + 1, y, x + 2, y });
+                        }
+
+                        if (y < height - 2 && map[x, y + 2] == WALL)
+                        {
+                            frontiers.Add(new int[] { x, y + 1, x, y + 2 });
+                        }
                     }
                 }
-            }
-
-            if (!Validate())
-            {
-                this.Solve();
             }
         }
 
@@ -149,6 +163,7 @@ namespace MazeGenerator
             string maze = this.ToString();
             string objectFile = "";
             int incrementX = 0;
+            Random random = new Random();
 
             using (StringReader reader = new StringReader(maze))
             {
@@ -159,19 +174,21 @@ namespace MazeGenerator
 
                     foreach (char c in line)
                     {
+                        string obj = objectNames[random.Next(objectNames.Count)];
+
                         if (c == WALL_CHAR)
                         {
-                            objectFile += $"SpawnObject( \"bldr_Platform2_Block\", \"{this.startingX + incrementX}.000000 {this.wallSize}.000000 {this.startingY + incrementY}.000000\", \"0.000000 0.000000 0.000000\" );\n";
+                            objectFile += $"SpawnObject( \"{obj}\", \"{this.startingX + incrementX}.000000 {this.wallSize}.000000 {this.startingY + incrementY}.000000\", \"0.000000 0.000000 0.000000\" );\n";
                         }
                         else
                         {
-                            objectFile += $"SpawnObject( \"bldr_Platform2_Block\", \"{this.startingX + incrementX}.000000 {this.passageSize}.000000 {this.startingY + incrementY}.000000\", \"0.000000 0.000000 0.000000\" );\n";
+                            objectFile += $"SpawnObject( \"{obj}\", \"{this.startingX + incrementX}.000000 {this.passageSize}.000000 {this.startingY + incrementY}.000000\", \"0.000000 0.000000 0.000000\" );\n";
                         }
 
-                        incrementY -= 10;
+                        incrementY += yChangeGeneration;
                     }
 
-                    incrementX -= 10;
+                    incrementX += xChangeGeneration;
                 }
             };
 

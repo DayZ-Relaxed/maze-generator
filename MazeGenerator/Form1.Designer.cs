@@ -43,12 +43,23 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.exportMaze = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.yChange = new System.Windows.Forms.NumericUpDown();
+            this.xChange = new System.Windows.Forms.NumericUpDown();
+            this.objectsToSelectFrom = new System.Windows.Forms.ListBox();
+            this.addToObjectList = new System.Windows.Forms.Button();
+            this.removeFromObjectList = new System.Windows.Forms.Button();
+            this.textToAddToObjectList = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.widthValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heightValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startingY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startingX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wallValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passageValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yChange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xChange)).BeginInit();
             this.SuspendLayout();
             // 
             // generateMaze
@@ -134,7 +145,7 @@
             this.startingY.Size = new System.Drawing.Size(104, 20);
             this.startingY.TabIndex = 8;
             this.startingY.Value = new decimal(new int[] {
-            5522,
+            5946,
             0,
             0,
             0});
@@ -151,7 +162,7 @@
             this.startingX.Size = new System.Drawing.Size(104, 20);
             this.startingX.TabIndex = 9;
             this.startingX.Value = new decimal(new int[] {
-            13761,
+            14909,
             0,
             0,
             0});
@@ -177,16 +188,16 @@
             // wallValue
             // 
             this.wallValue.Location = new System.Drawing.Point(586, 249);
-            this.wallValue.Maximum = new decimal(new int[] {
-            1000,
+            this.wallValue.Minimum = new decimal(new int[] {
+            100,
             0,
             0,
-            0});
+            -2147483648});
             this.wallValue.Name = "wallValue";
             this.wallValue.Size = new System.Drawing.Size(104, 20);
             this.wallValue.TabIndex = 12;
             this.wallValue.Value = new decimal(new int[] {
-            7,
+            4,
             0,
             0,
             0});
@@ -194,11 +205,11 @@
             // passageValue
             // 
             this.passageValue.Location = new System.Drawing.Point(719, 249);
-            this.passageValue.Maximum = new decimal(new int[] {
-            1000,
+            this.passageValue.Minimum = new decimal(new int[] {
+            100,
             0,
             0,
-            0});
+            -2147483648});
             this.passageValue.Name = "passageValue";
             this.passageValue.Size = new System.Drawing.Size(104, 20);
             this.passageValue.TabIndex = 13;
@@ -206,7 +217,7 @@
             3,
             0,
             0,
-            0});
+            -2147483648});
             // 
             // label4
             // 
@@ -237,11 +248,120 @@
             this.exportMaze.UseVisualStyleBackColor = true;
             this.exportMaze.Click += new System.EventHandler(this.exportMaze_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(716, 282);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Y Change";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(583, 282);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "X Change";
+            // 
+            // yChange
+            // 
+            this.yChange.Location = new System.Drawing.Point(719, 298);
+            this.yChange.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.yChange.Name = "yChange";
+            this.yChange.Size = new System.Drawing.Size(104, 20);
+            this.yChange.TabIndex = 18;
+            this.yChange.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            // 
+            // xChange
+            // 
+            this.xChange.Location = new System.Drawing.Point(586, 298);
+            this.xChange.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.xChange.Name = "xChange";
+            this.xChange.Size = new System.Drawing.Size(104, 20);
+            this.xChange.TabIndex = 17;
+            this.xChange.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            // 
+            // objectsToSelectFrom
+            // 
+            this.objectsToSelectFrom.FormattingEnabled = true;
+            this.objectsToSelectFrom.Items.AddRange(new object[] {
+            "bldr_Platform2_Block"});
+            this.objectsToSelectFrom.Location = new System.Drawing.Point(583, 478);
+            this.objectsToSelectFrom.Name = "objectsToSelectFrom";
+            this.objectsToSelectFrom.Size = new System.Drawing.Size(317, 108);
+            this.objectsToSelectFrom.TabIndex = 21;
+            this.objectsToSelectFrom.SelectedIndexChanged += new System.EventHandler(this.objectsToSelectFrom_SelectedIndexChanged);
+            // 
+            // addToObjectList
+            // 
+            this.addToObjectList.Location = new System.Drawing.Point(704, 449);
+            this.addToObjectList.Name = "addToObjectList";
+            this.addToObjectList.Size = new System.Drawing.Size(75, 23);
+            this.addToObjectList.TabIndex = 22;
+            this.addToObjectList.Text = "Add";
+            this.addToObjectList.UseVisualStyleBackColor = true;
+            this.addToObjectList.Click += new System.EventHandler(this.addToObjectList_Click);
+            // 
+            // removeFromObjectList
+            // 
+            this.removeFromObjectList.Location = new System.Drawing.Point(785, 449);
+            this.removeFromObjectList.Name = "removeFromObjectList";
+            this.removeFromObjectList.Size = new System.Drawing.Size(115, 23);
+            this.removeFromObjectList.TabIndex = 23;
+            this.removeFromObjectList.Text = "Remove Selected";
+            this.removeFromObjectList.UseVisualStyleBackColor = true;
+            this.removeFromObjectList.Click += new System.EventHandler(this.removeFromObjectList_Click);
+            // 
+            // textToAddToObjectList
+            // 
+            this.textToAddToObjectList.Location = new System.Drawing.Point(586, 451);
+            this.textToAddToObjectList.Name = "textToAddToObjectList";
+            this.textToAddToObjectList.Size = new System.Drawing.Size(112, 20);
+            this.textToAddToObjectList.TabIndex = 24;
+            this.textToAddToObjectList.TextChanged += new System.EventHandler(this.textToAddToObjectList_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(583, 422);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(198, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Object names to generate the maze from";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 602);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textToAddToObjectList);
+            this.Controls.Add(this.removeFromObjectList);
+            this.Controls.Add(this.addToObjectList);
+            this.Controls.Add(this.objectsToSelectFrom);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.yChange);
+            this.Controls.Add(this.xChange);
             this.Controls.Add(this.exportMaze);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -257,7 +377,9 @@
             this.Controls.Add(this.widthLabel);
             this.Controls.Add(this.mazeTextbox);
             this.Controls.Add(this.generateMaze);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "Maze Generator";
             ((System.ComponentModel.ISupportInitialize)(this.widthValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heightValue)).EndInit();
@@ -265,6 +387,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.startingX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wallValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passageValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yChange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xChange)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +411,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button exportMaze;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown yChange;
+        private System.Windows.Forms.NumericUpDown xChange;
+        private System.Windows.Forms.ListBox objectsToSelectFrom;
+        private System.Windows.Forms.Button addToObjectList;
+        private System.Windows.Forms.Button removeFromObjectList;
+        private System.Windows.Forms.TextBox textToAddToObjectList;
+        private System.Windows.Forms.Label label7;
     }
 }
 
