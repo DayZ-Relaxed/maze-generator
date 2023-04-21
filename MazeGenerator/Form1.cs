@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeGenerator.DayZ;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -7,20 +8,15 @@ namespace MazeGenerator
 {
     public partial class Form1 : Form
     {
-
-        private PrimMaze _maze;
+        private DayZRelaxedMazeHelpers _maze;
         private string _objectName;
         private int _selectedObject = -1;
 
-        public Form1()
-        {
-            InitializeComponent();
-         
-        }
+        public Form1() => InitializeComponent();
 
         private void generateMaze_Click(object sender, EventArgs e)
         {
-            _maze = new PrimMaze(
+            _maze = new DayZRelaxedMazeHelpers(
                 decimal.ToInt32(widthValue.Value),
                 decimal.ToInt32(heightValue.Value),
                 decimal.ToInt32(startingX.Value),
