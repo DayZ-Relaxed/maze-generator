@@ -52,6 +52,8 @@
             this.removeFromObjectList = new System.Windows.Forms.Button();
             this.textToAddToObjectList = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.wallObject = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.widthValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heightValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startingY)).BeginInit();
@@ -64,7 +66,7 @@
             // 
             // generateMaze
             // 
-            this.generateMaze.Location = new System.Drawing.Point(583, 12);
+            this.generateMaze.Location = new System.Drawing.Point(896, 12);
             this.generateMaze.Name = "generateMaze";
             this.generateMaze.Size = new System.Drawing.Size(317, 46);
             this.generateMaze.TabIndex = 0;
@@ -77,14 +79,14 @@
             this.mazeTextbox.Font = new System.Drawing.Font("Wingdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.mazeTextbox.Location = new System.Drawing.Point(9, 12);
             this.mazeTextbox.Name = "mazeTextbox";
-            this.mazeTextbox.Size = new System.Drawing.Size(568, 578);
+            this.mazeTextbox.Size = new System.Drawing.Size(881, 837);
             this.mazeTextbox.TabIndex = 1;
             this.mazeTextbox.Text = "";
             // 
             // widthLabel
             // 
             this.widthLabel.AutoSize = true;
-            this.widthLabel.Location = new System.Drawing.Point(583, 134);
+            this.widthLabel.Location = new System.Drawing.Point(896, 134);
             this.widthLabel.Name = "widthLabel";
             this.widthLabel.Size = new System.Drawing.Size(35, 13);
             this.widthLabel.TabIndex = 3;
@@ -92,7 +94,7 @@
             // 
             // widthValue
             // 
-            this.widthValue.Location = new System.Drawing.Point(586, 150);
+            this.widthValue.Location = new System.Drawing.Point(899, 150);
             this.widthValue.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -102,14 +104,14 @@
             this.widthValue.Size = new System.Drawing.Size(104, 20);
             this.widthValue.TabIndex = 4;
             this.widthValue.Value = new decimal(new int[] {
-            41,
+            49,
             0,
             0,
             0});
             // 
             // heightValue
             // 
-            this.heightValue.Location = new System.Drawing.Point(719, 150);
+            this.heightValue.Location = new System.Drawing.Point(1032, 150);
             this.heightValue.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -119,7 +121,7 @@
             this.heightValue.Size = new System.Drawing.Size(104, 20);
             this.heightValue.TabIndex = 6;
             this.heightValue.Value = new decimal(new int[] {
-            41,
+            49,
             0,
             0,
             0});
@@ -127,7 +129,7 @@
             // heightLabel
             // 
             this.heightLabel.AutoSize = true;
-            this.heightLabel.Location = new System.Drawing.Point(716, 134);
+            this.heightLabel.Location = new System.Drawing.Point(1029, 134);
             this.heightLabel.Name = "heightLabel";
             this.heightLabel.Size = new System.Drawing.Size(38, 13);
             this.heightLabel.TabIndex = 5;
@@ -135,7 +137,7 @@
             // 
             // startingY
             // 
-            this.startingY.Location = new System.Drawing.Point(719, 201);
+            this.startingY.Location = new System.Drawing.Point(1032, 201);
             this.startingY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -152,7 +154,7 @@
             // 
             // startingX
             // 
-            this.startingX.Location = new System.Drawing.Point(586, 201);
+            this.startingX.Location = new System.Drawing.Point(899, 201);
             this.startingX.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -170,7 +172,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(583, 185);
+            this.label2.Location = new System.Drawing.Point(896, 185);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 10;
@@ -179,7 +181,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(716, 185);
+            this.label3.Location = new System.Drawing.Point(1029, 185);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 11;
@@ -187,9 +189,15 @@
             // 
             // wallValue
             // 
-            this.wallValue.Location = new System.Drawing.Point(586, 249);
+            this.wallValue.DecimalPlaces = 3;
+            this.wallValue.Location = new System.Drawing.Point(899, 249);
+            this.wallValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.wallValue.Minimum = new decimal(new int[] {
-            100,
+            10000,
             0,
             0,
             -2147483648});
@@ -197,16 +205,22 @@
             this.wallValue.Size = new System.Drawing.Size(104, 20);
             this.wallValue.TabIndex = 12;
             this.wallValue.Value = new decimal(new int[] {
-            4,
+            3950,
             0,
             0,
-            0});
+            -2147287040});
             // 
             // passageValue
             // 
-            this.passageValue.Location = new System.Drawing.Point(719, 249);
+            this.passageValue.DecimalPlaces = 3;
+            this.passageValue.Location = new System.Drawing.Point(1032, 249);
+            this.passageValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.passageValue.Minimum = new decimal(new int[] {
-            100,
+            10000,
             0,
             0,
             -2147483648});
@@ -214,7 +228,7 @@
             this.passageValue.Size = new System.Drawing.Size(104, 20);
             this.passageValue.TabIndex = 13;
             this.passageValue.Value = new decimal(new int[] {
-            3,
+            8,
             0,
             0,
             -2147483648});
@@ -222,7 +236,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(583, 233);
+            this.label4.Location = new System.Drawing.Point(896, 233);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 14;
@@ -231,7 +245,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(716, 233);
+            this.label5.Location = new System.Drawing.Point(1029, 233);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 15;
@@ -240,7 +254,7 @@
             // exportMaze
             // 
             this.exportMaze.Enabled = false;
-            this.exportMaze.Location = new System.Drawing.Point(583, 64);
+            this.exportMaze.Location = new System.Drawing.Point(896, 64);
             this.exportMaze.Name = "exportMaze";
             this.exportMaze.Size = new System.Drawing.Size(317, 48);
             this.exportMaze.TabIndex = 16;
@@ -251,7 +265,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(716, 282);
+            this.label1.Location = new System.Drawing.Point(1029, 282);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 20;
@@ -260,7 +274,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(583, 282);
+            this.label6.Location = new System.Drawing.Point(896, 282);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 19;
@@ -268,7 +282,7 @@
             // 
             // yChange
             // 
-            this.yChange.Location = new System.Drawing.Point(719, 298);
+            this.yChange.Location = new System.Drawing.Point(1032, 298);
             this.yChange.Minimum = new decimal(new int[] {
             100,
             0,
@@ -278,14 +292,14 @@
             this.yChange.Size = new System.Drawing.Size(104, 20);
             this.yChange.TabIndex = 18;
             this.yChange.Value = new decimal(new int[] {
-            10,
+            4,
             0,
             0,
             -2147483648});
             // 
             // xChange
             // 
-            this.xChange.Location = new System.Drawing.Point(586, 298);
+            this.xChange.Location = new System.Drawing.Point(899, 298);
             this.xChange.Minimum = new decimal(new int[] {
             100,
             0,
@@ -295,7 +309,7 @@
             this.xChange.Size = new System.Drawing.Size(104, 20);
             this.xChange.TabIndex = 17;
             this.xChange.Value = new decimal(new int[] {
-            10,
+            4,
             0,
             0,
             -2147483648});
@@ -304,8 +318,11 @@
             // 
             this.objectsToSelectFrom.FormattingEnabled = true;
             this.objectsToSelectFrom.Items.AddRange(new object[] {
-            "bldr_Platform2_Block"});
-            this.objectsToSelectFrom.Location = new System.Drawing.Point(583, 478);
+            "MazeBlock_4_4a",
+            "MazeBlock_4_4b",
+            "MazeBlock_4_4",
+            "MazeBlock_4_4"});
+            this.objectsToSelectFrom.Location = new System.Drawing.Point(896, 478);
             this.objectsToSelectFrom.Name = "objectsToSelectFrom";
             this.objectsToSelectFrom.Size = new System.Drawing.Size(317, 108);
             this.objectsToSelectFrom.TabIndex = 21;
@@ -313,7 +330,7 @@
             // 
             // addToObjectList
             // 
-            this.addToObjectList.Location = new System.Drawing.Point(704, 449);
+            this.addToObjectList.Location = new System.Drawing.Point(1017, 449);
             this.addToObjectList.Name = "addToObjectList";
             this.addToObjectList.Size = new System.Drawing.Size(75, 23);
             this.addToObjectList.TabIndex = 22;
@@ -323,7 +340,7 @@
             // 
             // removeFromObjectList
             // 
-            this.removeFromObjectList.Location = new System.Drawing.Point(785, 449);
+            this.removeFromObjectList.Location = new System.Drawing.Point(1098, 449);
             this.removeFromObjectList.Name = "removeFromObjectList";
             this.removeFromObjectList.Size = new System.Drawing.Size(115, 23);
             this.removeFromObjectList.TabIndex = 23;
@@ -333,7 +350,7 @@
             // 
             // textToAddToObjectList
             // 
-            this.textToAddToObjectList.Location = new System.Drawing.Point(586, 451);
+            this.textToAddToObjectList.Location = new System.Drawing.Point(899, 451);
             this.textToAddToObjectList.Name = "textToAddToObjectList";
             this.textToAddToObjectList.Size = new System.Drawing.Size(112, 20);
             this.textToAddToObjectList.TabIndex = 24;
@@ -342,17 +359,36 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(583, 422);
+            this.label7.Location = new System.Drawing.Point(896, 422);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(198, 13);
             this.label7.TabIndex = 25;
             this.label7.Text = "Object names to generate the maze from";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(896, 330);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Wall Class";
+            // 
+            // wallObject
+            // 
+            this.wallObject.Location = new System.Drawing.Point(899, 346);
+            this.wallObject.Name = "wallObject";
+            this.wallObject.Size = new System.Drawing.Size(237, 20);
+            this.wallObject.TabIndex = 27;
+            this.wallObject.Text = "MazeBlock_4_4";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 602);
+            this.ClientSize = new System.Drawing.Size(1234, 861);
+            this.Controls.Add(this.wallObject);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textToAddToObjectList);
             this.Controls.Add(this.removeFromObjectList);
@@ -420,6 +456,8 @@
         private System.Windows.Forms.Button removeFromObjectList;
         private System.Windows.Forms.TextBox textToAddToObjectList;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox wallObject;
     }
 }
 

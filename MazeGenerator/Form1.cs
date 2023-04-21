@@ -25,11 +25,12 @@ namespace MazeGenerator
                 decimal.ToInt32(heightValue.Value),
                 decimal.ToInt32(startingX.Value),
                 decimal.ToInt32(startingY.Value),
-                decimal.ToInt32(wallValue.Value),
-                decimal.ToInt32(passageValue.Value),
+                wallValue.Value,
+                passageValue.Value,
                 decimal.ToInt32(xChange.Value),
                 decimal.ToInt32(yChange.Value),
-                new List<string>()
+                new List<string>(),
+                wallObject.Text
             );
             _maze.Solve();
 
